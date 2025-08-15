@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등급산출프로그램</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1><i class="fas fa-calculator"></i> 등급산출프로그램</h1>
+            <nav class="nav">
+                <button class="nav-btn active" data-tab="setup">기본설정</button>
+                <button class="nav-btn" data-tab="students">학생관리</button>
+                <button class="nav-btn" data-tab="grades">등급확인</button>
+                <button class="nav-btn" data-tab="class-view">반별보기</button>
+            </nav>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 기본설정 탭 -->
+            <section id="setup" class="tab-content active">
+                <div class="card">
+                    <h2><i class="fas fa-cog"></i> 학기 및 과목 설정</h2>
+                                            <div class="semester-setup">
+                            <div class="form-group">
+                                <label>학년-학기 선택:</label>
+                                <select id="semester-select">
+                                    <option value="1-1">1학년 1학기</option>
+                                    <option value="1-2">1학년 2학기</option>
+                                    <option value="2-1">2학년 1학기</option>
+                                    <option value="2-2">2학년 2학기</option>
+                                    <option value="3-1">3학년 1학기</option>
+                                </select>
+                                <button id="view-subjects" class="btn btn-primary"><i class="fas fa-search"></i> 조회</button>
+                            </div>
+                            <div class="form-group">
+                                <button id="reset-data" class="btn btn-danger"><i class="fas fa-trash"></i> 데이터 초기화</button>
+                            </div>
+                        </div>
+                        
+                        <div class="subject-management">
+                            <h3>과목 관리</h3>
+                            <div class="subject-form">
+                                <input type="text" id="subject-name" placeholder="과목명" class="input-field">
+                                <input type="number" id="subject-units" placeholder="단위수" class="input-field" min="1" max="10">
+                                <select id="subject-type" class="input-field">
+                                    <option value="direct">직접등급입력</option>
+                                    <option value="z-score">Z점수계산</option>
+                                </select>
+                                
+                                <!-- Z점수 설정칸을 과목 입력 바로 아래에 작게 배치 -->
+                                <div class="z-score-setup" id="z-score-setup" style="display: none;">
+                                    <div class="z-score-form">
+                                        <div class="form-group">
+                                            <label>평균:</label>
+                                            <input type="number" id="z-mean" placeholder="평균" step="0.01" class="input-field">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>표준편차:</label>
+                                            <input type="number" id="z-std" placeholder="표준편차" step="0.01" class="input-field">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button id="add-subject" class="btn btn-primary"><i class="fas fa-plus"></i> 과목추가</button>
+                            </div>
+                            
+                            <div class="subject-list">
+                                <h4>등록된 과목 <small style="color: #666;">(드래그하여 순서 변경 가능)</small></h4>
+                                <div id="subjects-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 학생관리 탭 -->
+            <section id="students" class="tab-content">
+                <div class="card">
+                    <h2><i class="fas fa-users"></i> 학생 관리</h2>
+                    
+                    <!-- 통합 학생 및 성적 입력 -->
+                    <div class="unified-input-section">
+                        <div class="input-controls">
+                            <select id="bulk-semester" class="input-field">
+                                <option value="1-1">1학년 1학기</option>
+                                <option value="1-2">1학년 2학기</option>
+                                <option value="2-1">2학년 1학기</option>
+                                <option value="2-2">2학년 2학기</option>
+                                <option value="3-1">3학년 1학기</option>
+                            </select>
+                            <button id="download-template" class="btn btn-secondary"><i class="fas fa-download"></i> 엑셀양식 다운로드</button>
+                            <button id="upload-excel" class="btn btn-secondary"><i class="fas fa-upload"></i> 엑셀파일 업로드</button>
+                            <button id="save-all-data" class="btn btn-success"><i class="fas fa-save"></i> 모든 데이터 저장</button>
+                            <button id="delete-selected" class="btn btn-danger"><i class="fas fa-trash"></i> 선택 삭제</button>
+                        </div>
+                        
+                        <div class="data-table-container">
+                            <table id="unified-data-table" class="unified-table">
+                                <thead id="unified-table-header">
+                                </thead>
+                                <tbody id="unified-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 등급확인 탭 -->
+            <section id="grades" class="tab-content">
+                <div class="card">
+                    <h2><i class="fas fa-chart-line"></i> 등급 확인</h2>
+                    
+                    <div class="search-section">
+                        <div class="search-form">
+                            <select id="search-grade" class="input-field">
+                                <option value="">학년 선택</option>
+                                <option value="1">1학년</option>
+                                <option value="2">2학년</option>
+                                <option value="3">3학년</option>
+                            </select>
+                            <input type="text" id="search-class" placeholder="반" class="input-field">
+                            <input type="text" id="search-name" placeholder="학생명" class="input-field">
+                            <button id="search-student" class="btn btn-primary"><i class="fas fa-search"></i> 검색</button>
+                        </div>
+                    </div>
+
+                    <div class="student-grade-display" id="student-grade-display" style="display: none;">
+                        <div class="student-info">
+                            <h3 id="display-student-name"></h3>
+                            <div class="grade-summary">
+                                <div class="semester-grades" id="semester-grades"></div>
+                                <div class="university-grades">
+                                    <h4>대학별 등급</h4>
+                                    <div class="university-calc">
+                                        <div class="university-a">
+                                            <h5>A대학 (1학년 20%, 2학년 30%, 3학년 1학기 50%)</h5>
+                                            <p>총 등급: <span id="university-a-grade">-</span></p>
+                                        </div>
+                                        <div class="university-b">
+                                            <h5>B대학 (최고학기 50%, 3학년 1학기 50%)</h5>
+                                            <p>총 등급: <span id="university-b-grade">-</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="export-buttons">
+                            <button id="export-student" class="btn btn-success"><i class="fas fa-file-excel"></i> 학생별 데이터 다운로드</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 반별보기 탭 -->
+            <section id="class-view" class="tab-content">
+                <div class="card">
+                    <h2><i class="fas fa-table"></i> 반별 데이터</h2>
+                    
+                    <div class="class-selector">
+                        <select id="grade-select" class="input-field">
+                            <option value="">학년 선택</option>
+                            <option value="1">1학년</option>
+                            <option value="2">2학년</option>
+                            <option value="3">3학년</option>
+                        </select>
+                        <select id="class-select" class="input-field">
+                            <option value="">반 선택</option>
+                        </select>
+                        <button id="view-class" class="btn btn-primary"><i class="fas fa-search"></i> 조회</button>
+                        <button id="export-class" class="btn btn-success"><i class="fas fa-file-excel"></i> 반별 데이터 다운로드</button>
+                    </div>
+
+                    <div class="class-table-container">
+                        <div class="semester-tabs">
+                            <button class="semester-tab active" data-semester="1-1">1학년 1학기</button>
+                            <button class="semester-tab" data-semester="1-2">1학년 2학기</button>
+                            <button class="semester-tab" data-semester="2-1">2학년 1학기</button>
+                            <button class="semester-tab" data-semester="2-2">2학년 2학기</button>
+                            <button class="semester-tab" data-semester="3-1">3학년 1학기</button>
+                        </div>
+                        <table id="class-table" class="data-table">
+                            <thead id="class-table-header">
+                            </thead>
+                            <tbody id="class-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 모달 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

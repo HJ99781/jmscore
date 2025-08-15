@@ -1,0 +1,970 @@
+/* 기본 스타일 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.header h1 i {
+    margin-right: 15px;
+    color: #ffd700;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card {
+    padding: 30px;
+}
+
+.card h2 {
+    color: #667eea;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 500;
+}
+
+.card h2 i {
+    margin-right: 10px;
+    color: #764ba2;
+}
+
+.card h3 {
+    color: #555;
+    margin: 20px 0 15px 0;
+    font-size: 1.3em;
+}
+
+.card h4 {
+    color: #666;
+    margin: 15px 0 10px 0;
+    font-size: 1.1em;
+}
+
+/* 탭 콘텐츠 */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 폼 스타일 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* 학기 설정 */
+.semester-setup {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+.semester-setup .form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 버튼 스타일 */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(250, 112, 154, 0.3);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+}
+
+.btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(23, 162, 184, 0.3);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* 과목 관리 */
+.subject-management {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.subject-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr auto;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.subject-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e1e8ed;
+}
+
+.subject-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+    cursor: move;
+}
+
+.subject-item:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subject-item.dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+}
+
+.drag-handle {
+    cursor: move;
+    user-select: none;
+}
+
+.drag-handle:hover {
+    color: #667eea !important;
+}
+
+.add-row-container {
+    text-align: center;
+    padding: 8px;
+    margin-top: 5px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px dashed #dee2e6;
+}
+
+.add-row-btn {
+    margin-right: 10px;
+    padding: 5px 12px;
+    font-size: 0.9em;
+}
+
+.add-row-container small {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 0.8em;
+}
+
+.subject-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.subject-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.subject-units {
+    background: #667eea;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.subject-type {
+    background: #764ba2;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.z-score-info {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    border: 1px solid #ffeaa7;
+}
+
+.no-subjects {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+    font-style: italic;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+}
+
+/* Z점수 설정 */
+.z-score-setup {
+    background: #fff3cd;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ffeaa7;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.z-score-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: end;
+}
+
+.z-score-form .form-group {
+    margin-bottom: 0;
+}
+
+.z-score-form label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.z-score-form .input-field {
+    padding: 6px 10px;
+    font-size: 0.9em;
+}
+
+/* 학생 관리 */
+.student-input-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.manual-input, .bulk-input {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.student-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    align-items: end;
+}
+
+.student-form .btn {
+    grid-column: 1 / -1;
+}
+
+.bulk-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 통합 입력 섹션 */
+.unified-input-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e1e8ed;
+    margin: 20px 0;
+}
+
+.input-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.data-table-container {
+    overflow-x: auto;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+}
+
+.unified-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.unified-table th,
+.unified-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e1e8ed;
+}
+
+.unified-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.unified-table td input {
+    width: 80px;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.unified-table td input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.unified-table .existing-student {
+    background: #f8f9fa;
+}
+
+.unified-table .existing-student .class-input,
+.unified-table .existing-student .name-input {
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+}
+
+.unified-table .student-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.unified-table #select-all {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* 학생 목록 */
+.student-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e1e8ed;
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4facfe;
+}
+
+.student-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.student-grade {
+    background: #ff6b6b;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.student-class {
+    background: #4facfe;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.student-name {
+    font-weight: 500;
+    color: #333;
+}
+
+
+
+.student-semester {
+    background: #764ba2;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+/* 검색 섹션 */
+.search-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+/* 등급 표시 */
+.student-grade-display {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #e1e8ed;
+}
+
+.grade-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.semester-grades {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.semester-grade-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.semester-grade-item:last-child {
+    border-bottom: none;
+}
+
+.semester-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.total-grade {
+    background: #667eea;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.subject-grades {
+    margin-left: 15px;
+}
+
+.subject-grade-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 0.9em;
+}
+
+.subject-name {
+    flex: 2;
+    color: #555;
+}
+
+.grade-value {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+    color: #667eea;
+}
+
+.raw-score {
+    flex: 1;
+    text-align: right;
+    color: #888;
+    font-size: 0.8em;
+}
+
+.no-subjects {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+.university-grades {
+    background: #e8f4fd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.university-calc {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.university-a, .university-b {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.university-a h5, .university-b h5 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.export-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 반별 보기 */
+.class-selector {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.class-selector select {
+    flex: 1;
+    max-width: 200px;
+}
+
+.class-table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #e1e8ed;
+}
+
+.semester-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e1e8ed;
+    border-radius: 10px 10px 0 0;
+}
+
+.semester-tab {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.semester-tab:hover {
+    background: #e8f4fd;
+    color: #667eea;
+}
+
+.semester-tab.active {
+    background: white;
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.data-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.data-table td {
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.data-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.data-table tr:hover {
+    background: #e8f4fd;
+}
+
+.empty-grade {
+    background: #ffe6e6;
+    color: #999;
+    font-style: italic;
+}
+
+/* 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.close:hover {
+    color: #667eea;
+}
+
+/* 성적 입력 모달 */
+.grade-input-modal {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.grade-input-form {
+    display: grid;
+    gap: 15px;
+}
+
+.grade-input-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.grade-input-table th,
+.grade-input-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.grade-input-table th {
+    background: #f8f9fa;
+    font-weight: 500;
+    color: #333;
+}
+
+.grade-input-table tr:hover {
+    background: #f8f9fa;
+}
+
+.grade-input-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.grade-input-row label {
+    font-weight: 500;
+    color: #333;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+    }
+    
+    .nav {
+        flex-direction: column;
+    }
+    
+    .nav-btn {
+        width: 100%;
+    }
+    
+    .subject-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .student-input-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .student-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .class-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .class-selector select {
+        max-width: none;
+    }
+    
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .grade-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .class-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .class-selector select {
+        max-width: none;
+    }
+    
+    .z-score-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .subject-item, .student-item {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .subject-info, .student-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+        width: 95%;
+    }
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content.active {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
