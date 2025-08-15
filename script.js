@@ -1051,6 +1051,15 @@ function handleAutoPaste(e) {
     // 칸 추가 버튼 다시 추가 (한 번만)
     addAddRowButton(tableBody, semesterSubjects, semester);
     
+    // 붙여넣기된 데이터를 자동으로 저장하고 기존 학생 행으로 변환
+    if (processedRows > 0) {
+        savePastedData();
+        // 테이블을 새로고침하여 기존 학생 행으로 표시
+        setTimeout(() => {
+            updateUnifiedTable();
+        }, 100);
+    }
+    
     // 성공 메시지
     showQuickMessage(`엑셀 데이터가 성공적으로 붙여넣어졌습니다. (처리된 행: ${processedRows}개, 전체 행: ${rows.length}개)`);
 }
@@ -1068,6 +1077,94 @@ function handleGlobalPaste(e) {
             handleAutoPaste(e);
         }
     }
+}
+
+// 붙여넣기된 데이터 자동 저장
+function savePastedData() {
+    const semester = document.getElementById('bulk-semester').value;
+    const semesterSubjects = subjects[semester] || [];
+    
+    if (semesterSubjects.length === 0) {
+        console.log('저장할 과목이 없습니다.');
+        return;
+    }
+    
+    let newStudentsCount = 0;
+    let updatedGradesCount = 0;
+    
+    // 새로 붙여넣기된 학생들 처리
+    const newStudentRows = document.querySelectorAll('.new-student');
+    newStudentRows.forEach(row => {
+        const classInput = row.querySelector('.class-input');
+        const nameInput = row.querySelector('.name-input');
+        const gradeInputs = row.querySelectorAll('.grade-input');
+        
+        if (!classInput || !nameInput) return;
+        
+        const className = classInput.value.trim();
+        const studentName = nameInput.value.trim();
+        
+        if (!className || !studentName) return;
+        
+        // 새 학생 생성
+        const student = {
+            id: Date.now() + Math.random(),
+            grade: semester.split('-')[0],
+            class: className,
+            name: studentName,
+            semester: semester
+        };
+        
+        students.push(student);
+        newStudentsCount++;
+        
+        // 성적 저장
+        if (!grades[student.id]) grades[student.id] = {};
+        if (!grades[student.id][semester]) grades[student.id][semester] = {};
+        
+        gradeInputs.forEach((input, index) => {
+            const value = input.value.trim();
+            // 숫자 값만 허용하고 유효성 검사
+            if (value && !isNaN(parseFloat(value)) && index < semesterSubjects.length) {
+                const subject = semesterSubjects[index];
+                let finalGrade = null;
+                
+                if (subject.type === 'z-score') {
+                    const score = parseFloat(value);
+                    if (!isNaN(score)) {
+                        const subjectZScore = zScoreSettings[semester]?.[subject.id];
+                        if (subjectZScore) {
+                            const zScore = (score - subjectZScore.mean) / subjectZScore.std;
+                            finalGrade = calculateGradeFromZScore(zScore);
+                        }
+                    }
+                } else {
+                    const grade = parseInt(value);
+                    if (!isNaN(grade)) {
+                        finalGrade = grade;
+                    }
+                }
+                
+                grades[student.id][semester][subject.id] = {
+                    raw: value,
+                    grade: finalGrade,
+                    units: subject.units
+                };
+                updatedGradesCount++;
+            }
+        });
+    });
+    
+    // 데이터 저장
+    saveData();
+    
+    // 화면 업데이트
+    updateClassSelect();
+    
+    console.log(`붙여넣기 데이터 자동 저장 완료: 새 학생 ${newStudentsCount}명, 성적 ${updatedGradesCount}개`);
+    
+    // 성공 메시지 업데이트
+    showQuickMessage(`데이터가 자동으로 저장되었습니다. (새 학생: ${newStudentsCount}명, 성적: ${updatedGradesCount}개)`);
 }
 
 // 빠른 메시지 표시 함수
